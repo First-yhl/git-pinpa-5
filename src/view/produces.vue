@@ -16,34 +16,19 @@
 </template>
 
 <script lang='ts' setup>
-const productList = [
-    {
-        id: 1,
-        name: 'iPhone 17',
-        price: 5999,
-        img: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=modern%20smartphone%20product%20photo%20black%20body%20colorful%20screen%20white%20background%20e-commerce&image_size=square',
-    },
-    {
-        id: 2,
-        name: '机械键盘',
-        price: 499,
-        img: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=mechanical%20keyboard%20product%20photo%20black%20keycaps%20white%20background%20e-commerce&image_size=square',
-    },
-    {
-        id: 3,
-        name: '鼠标',
-        price: 299,
-        img: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=wireless%20computer%20mouse%20product%20photo%20black%20white%20background%20e-commerce&image_size=square',
-    },
-    {
-        id: 4,
-        name: '耳机',
-        price: 799,
-        img: 'https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=over%20ear%20headphones%20product%20photo%20black%20white%20background%20e-commerce&image_size=square',
-    },
-]
+import { ref, onMounted } from 'vue'
 import { useCartStore } from '../store/cart'
+import { getProduceList } from '../api/produce'
+import type { Good } from '../types/index'
+
 const cartStore = useCartStore()
+// 商品列表：先空着，等接口拿
+const productList = ref<Good[]>([])
+
+// 页面挂载时请求接口
+onMounted(async () => {
+    productList.value = await getProduceList()
+})
 </script>
 
 <style scoped>

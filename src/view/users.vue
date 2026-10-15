@@ -48,6 +48,13 @@
 import { useUserStore } from '../store/user'
 const userStore = useUserStore()
 
+import { onMounted } from 'vue'
+
+onMounted(() => {
+  userStore.loadUsers()
+})
+
+
 const handleAddClick = () => {
     userStore.userList.push({
         id: userStore.userList.length + 1,

@@ -92,7 +92,7 @@ const iconPath = (name: string) => iconMap[name] || ''
 }
 
 .menu {
-    /* flex: 1; */
+    flex: 1;
     padding: 12px 10px;
     display: flex;
     flex-direction: column;
